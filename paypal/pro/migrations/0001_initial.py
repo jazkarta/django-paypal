@@ -3,44 +3,45 @@ import datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
+from django.db import connection
 
 
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'PayPalNVP'
-        # db.create_table('paypal_nvp', (
-        #     ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-        #     ('method', self.gf('django.db.models.fields.CharField')(max_length=64, blank=True)),
-        #     ('ack', self.gf('django.db.models.fields.CharField')(max_length=32, blank=True)),
-        #     ('profilestatus', self.gf('django.db.models.fields.CharField')(max_length=32, blank=True)),
-        #     ('timestamp', self.gf('django.db.models.fields.DateTimeField')(null=True, blank=True)),
-        #     ('profileid', self.gf('django.db.models.fields.CharField')(max_length=32, blank=True)),
-        #     ('profilereference', self.gf('django.db.models.fields.CharField')(max_length=128, blank=True)),
-        #     ('correlationid', self.gf('django.db.models.fields.CharField')(max_length=32, blank=True)),
-        #     ('token', self.gf('django.db.models.fields.CharField')(max_length=64, blank=True)),
-        #     ('payerid', self.gf('django.db.models.fields.CharField')(max_length=64, blank=True)),
-        #     ('firstname', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
-        #     ('lastname', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
-        #     ('street', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
-        #     ('city', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
-        #     ('state', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
-        #     ('countrycode', self.gf('django.db.models.fields.CharField')(max_length=2, blank=True)),
-        #     ('zip', self.gf('django.db.models.fields.CharField')(max_length=32, blank=True)),
-        #     ('invnum', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
-        #     ('custom', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
-        #     ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'], null=True, blank=True)),
-        #     ('flag', self.gf('django.db.models.fields.BooleanField')(default=False)),
-        #     ('flag_code', self.gf('django.db.models.fields.CharField')(max_length=32, blank=True)),
-        #     ('flag_info', self.gf('django.db.models.fields.TextField')(blank=True)),
-        #     ('ipaddress', self.gf('django.db.models.fields.IPAddressField')(max_length=15, blank=True)),
-        #     ('query', self.gf('django.db.models.fields.TextField')(blank=True)),
-        #     ('response', self.gf('django.db.models.fields.TextField')(blank=True)),
-        #     ('created_at', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
-        #     ('updated_at', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
-        # ))
-        # db.send_create_signal('pro', ['PayPalNVP'])
-        pass
+        if not 'paypal_nvp' in connection.introspection.table_names():
+            #Adding model 'PayPalNVP'
+            db.create_table('paypal_nvp', (
+                ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+                ('method', self.gf('django.db.models.fields.CharField')(max_length=64, blank=True)),
+                ('ack', self.gf('django.db.models.fields.CharField')(max_length=32, blank=True)),
+                ('profilestatus', self.gf('django.db.models.fields.CharField')(max_length=32, blank=True)),
+                ('timestamp', self.gf('django.db.models.fields.DateTimeField')(null=True, blank=True)),
+                ('profileid', self.gf('django.db.models.fields.CharField')(max_length=32, blank=True)),
+                ('profilereference', self.gf('django.db.models.fields.CharField')(max_length=128, blank=True)),
+                ('correlationid', self.gf('django.db.models.fields.CharField')(max_length=32, blank=True)),
+                ('token', self.gf('django.db.models.fields.CharField')(max_length=64, blank=True)),
+                ('payerid', self.gf('django.db.models.fields.CharField')(max_length=64, blank=True)),
+                ('firstname', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
+                ('lastname', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
+                ('street', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
+                ('city', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
+                ('state', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
+                ('countrycode', self.gf('django.db.models.fields.CharField')(max_length=2, blank=True)),
+                ('zip', self.gf('django.db.models.fields.CharField')(max_length=32, blank=True)),
+                ('invnum', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
+                ('custom', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
+                ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'], null=True, blank=True)),
+                ('flag', self.gf('django.db.models.fields.BooleanField')(default=False)),
+                ('flag_code', self.gf('django.db.models.fields.CharField')(max_length=32, blank=True)),
+                ('flag_info', self.gf('django.db.models.fields.TextField')(blank=True)),
+                ('ipaddress', self.gf('django.db.models.fields.IPAddressField')(max_length=15, blank=True)),
+                ('query', self.gf('django.db.models.fields.TextField')(blank=True)),
+                ('response', self.gf('django.db.models.fields.TextField')(blank=True)),
+                ('created_at', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+                ('updated_at', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
+            ))
+            db.send_create_signal('pro', ['PayPalNVP'])
 
 
     def backwards(self, orm):
